@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float angle;
     [SerializeField]
+    private float stairsUpSpeed;
+    [SerializeField]
     private GameObject camera;
 
     // Start is called before the first frame update
@@ -48,4 +50,13 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "Stairs")
+        {
+            transform.Translate(0f, 100f, 0f);
+        }
+    }
+
 }

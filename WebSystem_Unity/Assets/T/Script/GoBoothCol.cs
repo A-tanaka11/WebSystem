@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoBoothCol : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class GoBoothCol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(message.active == true && Input.GetKey(KeyCode.Z))
+        {
+            SceneManager.LoadScene("BoothScene");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,6 +30,7 @@ public class GoBoothCol : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             message.SetActive(true);
+            
         }
     }
 

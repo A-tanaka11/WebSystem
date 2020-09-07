@@ -13,11 +13,18 @@ public class Player : MonoBehaviour
     private float stairsUpSpeed;
     [SerializeField]
     private GameObject camera;
+    [SerializeField]
+    private float jumpPower;
+
+    private Rigidbody rigidbody;
+
+
+    private bool jumpFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -48,6 +55,14 @@ public class Player : MonoBehaviour
         {
             camera.transform.localPosition = new Vector3(0.0f, 0.72f, -1.53f);
         }
+
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            if (!jumpFlag)
+                rigidbody.AddForce(transform.up * jumpPower);
+        }
+
     }
 
 
@@ -56,6 +71,25 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Stairs")
         {
             transform.Translate(0f, 100f, 0f);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        //地面についている
+        if(collision.gameObject.tag == "Ground")
+        {
+            jumpFlag = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //地面についていない
+        if(collision.gameObject.tag == "Ground")
+        {
+            jumpFlag = true;
         }
     }
 

@@ -60,7 +60,11 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             if (!jumpFlag)
+            {
                 rigidbody.AddForce(transform.up * jumpPower);
+                jumpFlag = true;
+            }
+                
         }
 
     }
@@ -81,15 +85,6 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             jumpFlag = false;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        //地面についていない
-        if(collision.gameObject.tag == "Ground")
-        {
-            jumpFlag = true;
         }
     }
 

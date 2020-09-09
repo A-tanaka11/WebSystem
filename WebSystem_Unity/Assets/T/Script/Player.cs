@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody rigidbody;
 
+    private bool openURLFlag = false;
 
     private bool jumpFlag = false;
 
@@ -72,9 +74,33 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //階段上る
         if(other.gameObject.tag == "Stairs")
         {
             transform.Translate(0f, 100f, 0f);
+        }
+        //ブース、相談室に入る
+        if (other.gameObject.tag == "ConsultationRoom" && Input.GetKey(KeyCode.Z))
+        {
+            SceneManager.LoadScene(other.gameObject.tag + "Scene");
+        }
+        else if(other.gameObject.tag == "Booth" && Input.GetKey(KeyCode.Z))
+        {
+            SceneManager.LoadScene(other.gameObject.tag + "Scene");
+        }
+        //URLを開く
+        if(other.gameObject.tag == "Booth" && Input.GetKeyDown(KeyCode.X) && !openURLFlag)
+        {
+            Application.OpenURL(other.gameObject.GetComponent<booth>().BriefingURL);
+            openURLFlag = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Booth")
+        {
+            openURLFlag = false;
         }
     }
 

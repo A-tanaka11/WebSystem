@@ -8,6 +8,8 @@ TagManager:
   - GoBoothCol
   - GoBooth_Message
   - Ground
+  - ConsultationRoom
+  - Booth
   layers:
   - Default
   - TransparentFX

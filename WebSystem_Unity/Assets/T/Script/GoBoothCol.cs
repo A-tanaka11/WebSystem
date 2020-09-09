@@ -8,6 +8,8 @@ public class GoBoothCol : MonoBehaviour
     [SerializeField]
     private GameObject message;
 
+    [SerializeField]
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +21,7 @@ public class GoBoothCol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(message.active == true && Input.GetKey(KeyCode.Z))
-        {
-            SceneManager.LoadScene("BoothScene");
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +39,15 @@ public class GoBoothCol : MonoBehaviour
         {
             message.SetActive(false);
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //if(other.gameObject.tag == "Player" && Input.GetKey(KeyCode.Z))
+        //{
+        //    SceneManager.LoadScene(other.gameObject.tag + "Scene");
+        //}
+        
     }
 
 }

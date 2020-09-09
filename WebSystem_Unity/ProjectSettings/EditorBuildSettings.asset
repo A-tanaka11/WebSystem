@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BoothScene.unity
     guid: f37dfc8ee1c4cd74ba1e470427d78034
+  - enabled: 1
+    path: Assets/Scenes/ConsultationRoomScene.unity
+    guid: abe7674daa6b0a64d9873f2a346f42f3
   m_configObjects: {}

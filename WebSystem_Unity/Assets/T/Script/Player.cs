@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     private bool jumpFlag = false;
 
+    public static string boothName = "株式会社○○";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
             }
                 
         }
-
+        
     }
 
 
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
         //ブース、相談室に入る
         if (other.gameObject.tag == "ConsultationRoom" && Input.GetKey(KeyCode.Z))
         {
+            boothName = other.gameObject.GetComponent<booth>().Name;
             SceneManager.LoadScene(other.gameObject.tag + "Scene");
         }
         else if(other.gameObject.tag == "Booth" && Input.GetKey(KeyCode.Z))
@@ -112,6 +115,12 @@ public class Player : MonoBehaviour
         {
             jumpFlag = false;
         }
+    }
+
+
+    public static string GetBoothName()
+    {
+        return boothName;
     }
 
 }

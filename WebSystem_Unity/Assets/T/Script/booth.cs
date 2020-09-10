@@ -29,5 +29,9 @@ public class booth : MonoBehaviour
         set { briefingURL = value; }
     }
 
-
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
 }
